@@ -87,9 +87,11 @@ _foldsymbols._patterns[#_foldsymbols._patterns + 1] = '//'
 _foldsymbols._patterns[#_foldsymbols._patterns + 1] = '#'
 _foldsymbols._patterns[#_foldsymbols._patterns + 1] = '[{}]'
 _foldsymbols._patterns[#_foldsymbols._patterns + 1] = '[()]'
-_foldsymbols[l.OPERATOR] = {['{'] = 1, ['}'] = -1, ['('] = 1, [')'] = -1}
+_foldsymbols._patterns[#_foldsymbols._patterns + 1] = '[%[%]]'
+_foldsymbols._patterns[#_foldsymbols._patterns + 1] = '/%*'
+_foldsymbols._patterns[#_foldsymbols._patterns + 1] = '%*/'
+_foldsymbols[l.OPERATOR] = {['{'] = 1, ['}'] = -1, ['('] = 1, [')'] = -1, ['['] = 1, [']'] = -1}
 _foldsymbols.php_tag = {['<?'] = 1, ['?>'] = -1}
-_foldsymbols[l.COMMENT]['//'] = l.fold_line_comments('//')
-_foldsymbols[l.COMMENT]['#'] = l.fold_line_comments('#')
+_foldsymbols[l.COMMENT] = {['//'] = l.fold_line_comments('//'), ['#'] = l.fold_line_comments('#'), ['/*'] = 1, ['*/'] = -1}
 M._foldsymbols = _foldsymbols
 return M
